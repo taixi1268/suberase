@@ -64,7 +64,7 @@
     },
     "q4": {
       "question": "What are credits and how do they work?",
-      "answer": "Credits are used to process videos. New users get 100 free credits. Each video processing costs 10 credits. You can earn 10 bonus credits daily by logging in."
+      "answer": "Credits are used to process videos. New users get 10 free credits. Each video processing costs 10 credits. You can earn 10 bonus credits daily by logging in."
     },
     "q5": {
       "question": "What if the result is not satisfactory?",
@@ -73,7 +73,7 @@
   },
   "footer": {
     "description": "AI-powered video subtitle removal tool",
-    "copyright": "© 2024 SubErase. All rights reserved."
+    "copyright": "© 2025 SubErase. All rights reserved."
   },
   "upload": {
     "title": "Upload Your Video",
@@ -102,8 +102,8 @@
     "google": "Google",
     "github": "GitHub",
     "welcome": "Welcome back!",
-    "newUser": "Welcome! You've received 100 free credits.",
-    "registerBonus": "New users get 100 free credits!"
+    "newUser": "Welcome! You've received 10 free credits.",
+    "registerBonus": "New users get 10 free credits!"
   },
   "common": {
     "loading": "Loading...",

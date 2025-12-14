@@ -28,13 +28,13 @@ export async function GET(request: Request) {
           email: data.user.email,
           name: data.user.user_metadata?.full_name || data.user.user_metadata?.name,
           avatar_url: data.user.user_metadata?.avatar_url,
-          credits: 100, // Initial credits for new users
+          credits: 10, // Initial credits for new users
         })
 
         // Log the credit transaction
         await adminSupabase.from('credit_logs').insert({
           user_id: data.user.id,
-          amount: 100,
+          amount: 10,
           type: 'register',
         })
       }

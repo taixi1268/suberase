@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Play, Pause, Volume2, VolumeX, Maximize } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -25,6 +26,7 @@ export function RegionSelector({
   onRegionsChange,
   disabled,
 }: RegionSelectorProps) {
+  const t = useTranslations('edit')
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -346,7 +348,7 @@ export function RegionSelector({
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="bg-black/70 backdrop-blur-sm px-6 py-3 rounded-xl">
               <p className="text-base text-white">
-                Draw a rectangle around the subtitle area
+                {t('step2')}
               </p>
             </div>
           </div>

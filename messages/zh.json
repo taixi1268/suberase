@@ -64,7 +64,7 @@
     },
     "q4": {
       "question": "积分是什么？如何使用？",
-      "answer": "积分用于处理视频。新用户获得100免费积分，每次处理消耗10积分。每日登录可领取10积分。"
+      "answer": "积分用于处理视频。新用户获得10免费积分，每次处理消耗10积分。每日登录可领取10积分。"
     },
     "q5": {
       "question": "如果效果不满意怎么办？",
@@ -73,7 +73,7 @@
   },
   "footer": {
     "description": "AI驱动的视频字幕去除工具",
-    "copyright": "© 2024 SubErase. 保留所有权利。"
+    "copyright": "© 2025 SubErase. 保留所有权利。"
   },
   "upload": {
     "title": "上传您的视频",
@@ -102,8 +102,8 @@
     "google": "Google",
     "github": "GitHub",
     "welcome": "欢迎回来！",
-    "newUser": "欢迎！您已获得100免费积分。",
-    "registerBonus": "新用户注册即送100积分！"
+    "newUser": "欢迎！您已获得10免费积分。",
+    "registerBonus": "新用户注册即送10积分！"
   },
   "common": {
     "loading": "加载中...",
