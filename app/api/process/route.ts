@@ -54,6 +54,11 @@ export async function POST(request: Request) {
       userData = newUser
     }
 
+    // Ensure userData is not null
+    if (!userData) {
+      return NextResponse.json({ error: 'Failed to get user data' }, { status: 500 })
+    }
+
     console.log('User credits:', userData.credits)
 
     // Check credits
