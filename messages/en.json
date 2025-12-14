@@ -114,5 +114,41 @@
     "download": "Download",
     "share": "Share",
     "back": "Back"
+  },
+  "edit": {
+    "instructions": "Instructions",
+    "step1": "Pause the video where subtitles are visible",
+    "step2": "Draw a rectangle around the subtitle area",
+    "step3": "Click \"Start Processing\" when ready",
+    "selectedRegions": "Selected Regions",
+    "noRegions": "No regions selected. Draw a rectangle on the video to mark the subtitle area.",
+    "region": "Region",
+    "startProcessing": "Start Processing",
+    "processing": "Processing...",
+    "creditCost": "This will use",
+    "credits": "credits"
+  },
+  "result": {
+    "processed": "Processed",
+    "original": "Original",
+    "originalVideo": "Original Video",
+    "completeTitle": "Processing Complete!",
+    "completeSubtitle": "Your video has been successfully processed",
+    "originalDescription": "Original video with subtitles",
+    "processedDescription": "Processed video - subtitles removed",
+    "downloading": "Downloading...",
+    "downloadVideo": "Download Video",
+    "processAgain": "Process Again",
+    "processAnother": "Process Another Video",
+    "shareResult": "Share Result",
+    "summary": "Processing Summary",
+    "regionsProcessed": "Regions Processed",
+    "creditsUsed": "Credits Used",
+    "successRate": "Success Rate",
+    "tipsTitle": "Tips for Best Results",
+    "tip1": "Select the subtitle area as precisely as possible",
+    "tip2": "For hardcoded subtitles, select a region that covers all text",
+    "tip3": "If the result isn't perfect, try adjusting the selection area and retry",
+    "tip4": "Processing another video will use 10 credits"
   }
 }

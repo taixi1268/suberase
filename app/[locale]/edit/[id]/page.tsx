@@ -105,26 +105,26 @@ export default function EditPage() {
             {/* Instructions */}
             <Card variant="glass">
               <h3 className="text-lg font-semibold text-text-primary mb-3">
-                Instructions
+                {t('edit.instructions')}
               </h3>
               <ul className="space-y-2 text-sm text-text-secondary">
                 <li className="flex items-start gap-2">
                   <span className="w-5 h-5 rounded-full bg-primary-purple/20 text-primary-purple flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
                     1
                   </span>
-                  <span>Pause the video where subtitles are visible</span>
+                  <span>{t('edit.step1')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-5 h-5 rounded-full bg-primary-purple/20 text-primary-purple flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
                     2
                   </span>
-                  <span>Draw a rectangle around the subtitle area</span>
+                  <span>{t('edit.step2')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-5 h-5 rounded-full bg-primary-purple/20 text-primary-purple flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
                     3
                   </span>
-                  <span>Click "Start Processing" when ready</span>
+                  <span>{t('edit.step3')}</span>
                 </li>
               </ul>
             </Card>
@@ -132,12 +132,12 @@ export default function EditPage() {
             {/* Selected Regions */}
             <Card variant="glass">
               <h3 className="text-lg font-semibold text-text-primary mb-3">
-                Selected Regions ({regions.length})
+                {t('edit.selectedRegions')} ({regions.length})
               </h3>
 
               {regions.length === 0 ? (
                 <p className="text-sm text-text-muted">
-                  No regions selected. Draw a rectangle on the video to mark the subtitle area.
+                  {t('edit.noRegions')}
                 </p>
               ) : (
                 <ul className="space-y-2">
@@ -147,7 +147,7 @@ export default function EditPage() {
                       className="flex items-center justify-between p-2 rounded-lg bg-white/5"
                     >
                       <span className="text-sm text-text-secondary">
-                        Region {index + 1}
+                        {t('edit.region')} {index + 1}
                       </span>
                       <button
                         onClick={() => handleDeleteRegion(region.id)}
@@ -172,18 +172,18 @@ export default function EditPage() {
                 {isProcessing ? (
                   <>
                     <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    Processing...
+                    {t('edit.processing')}
                   </>
                 ) : (
                   <>
                     <Play className="w-5 h-5 mr-2" />
-                    Start Processing
+                    {t('edit.startProcessing')}
                   </>
                 )}
               </Button>
 
               <p className="text-center text-sm text-text-muted">
-                This will use <span className="text-warning font-medium">10 credits</span>
+                {t('edit.creditCost')} <span className="text-warning font-medium">10 {t('edit.credits')}</span>
               </p>
             </div>
           </div>

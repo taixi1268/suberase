@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { CheckCircle, Download, RefreshCw, Share2, ArrowLeft, Loader2 } from 'lucide-react'
 import { Button, Card } from '@/components/ui'
 
@@ -15,6 +16,7 @@ interface ProcessingData {
 export default function ResultPage() {
   const router = useRouter()
   const params = useParams()
+  const t = useTranslations()
   const taskId = params.id as string
 
   const [showOriginal, setShowOriginal] = useState(false)
@@ -123,10 +125,10 @@ export default function ResultPage() {
             <CheckCircle className="w-8 h-8 text-success" />
           </div>
           <h1 className="text-3xl font-bold text-text-primary mb-2">
-            Processing Complete!
+            {t('result.completeTitle')}
           </h1>
           <p className="text-text-secondary">
-            Your video has been successfully processed
+            {t('result.completeSubtitle')}
           </p>
         </div>
 
@@ -143,7 +145,7 @@ export default function ResultPage() {
                     : 'text-text-secondary hover:text-text-primary'
                 }`}
               >
-                Processed
+                {t('result.processed')}
               </button>
               <button
                 onClick={() => setShowOriginal(true)}
@@ -153,7 +155,7 @@ export default function ResultPage() {
                     : 'text-text-secondary hover:text-text-primary'
                 }`}
               >
-                Original
+                {t('result.original')}
               </button>
             </div>
 
@@ -174,7 +176,7 @@ export default function ResultPage() {
                       <span className="text-2xl">🎬</span>
                     </div>
                     <p className="text-text-primary font-medium mb-1">
-                      Original Video
+                      {t('result.originalVideo')}
                     </p>
                     <p className="text-sm text-text-muted">
                       {processingData?.videoName || 'video.mp4'}
@@ -186,8 +188,8 @@ export default function ResultPage() {
 
             <p className="text-center text-sm text-text-muted mt-4">
               {showOriginal
-                ? 'Original video with subtitles'
-                : 'Processed video - subtitles removed'}
+                ? t('result.originalDescription')
+                : t('result.processedDescription')}
             </p>
           </Card>
         </div>
@@ -203,18 +205,18 @@ export default function ResultPage() {
             {downloading ? (
               <>
                 <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                Downloading...
+                {t('result.downloading')}
               </>
             ) : (
               <>
                 <Download className="w-5 h-5 mr-2" />
-                Download Video
+                {t('result.downloadVideo')}
               </>
             )}
           </Button>
           <Button onClick={handleRetry} variant="secondary" size="lg" className="w-full">
             <RefreshCw className="w-5 h-5 mr-2" />
-            Process Again
+            {t('result.processAgain')}
           </Button>
         </div>
 
@@ -222,11 +224,11 @@ export default function ResultPage() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button onClick={handleNewVideo} variant="ghost">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Process Another Video
+            {t('result.processAnother')}
           </Button>
           <Button onClick={handleShare} variant="ghost">
             <Share2 className="w-4 h-4 mr-2" />
-            Share Result
+            {t('result.shareResult')}
           </Button>
         </div>
 
@@ -234,22 +236,22 @@ export default function ResultPage() {
         <div className="mt-12">
           <Card variant="glass" className="p-6">
             <h3 className="text-lg font-semibold text-text-primary mb-4">
-              Processing Summary
+              {t('result.summary')}
             </h3>
             <div className="grid sm:grid-cols-3 gap-4 text-center">
               <div className="p-4 rounded-lg bg-white/5">
                 <p className="text-2xl font-bold text-primary-blue">
                   {processingData?.regions?.length || 1}
                 </p>
-                <p className="text-sm text-text-muted">Regions Processed</p>
+                <p className="text-sm text-text-muted">{t('result.regionsProcessed')}</p>
               </div>
               <div className="p-4 rounded-lg bg-white/5">
                 <p className="text-2xl font-bold text-primary-purple">10</p>
-                <p className="text-sm text-text-muted">Credits Used</p>
+                <p className="text-sm text-text-muted">{t('result.creditsUsed')}</p>
               </div>
               <div className="p-4 rounded-lg bg-white/5">
                 <p className="text-2xl font-bold text-success">100%</p>
-                <p className="text-sm text-text-muted">Success Rate</p>
+                <p className="text-sm text-text-muted">{t('result.successRate')}</p>
               </div>
             </div>
           </Card>
@@ -259,13 +261,13 @@ export default function ResultPage() {
         <div className="mt-6">
           <Card variant="glass" className="p-6">
             <h3 className="text-lg font-semibold text-text-primary mb-4">
-              Tips for Best Results
+              {t('result.tipsTitle')}
             </h3>
             <ul className="space-y-2 text-sm text-text-secondary">
-              <li>• Select the subtitle area as precisely as possible</li>
-              <li>• For hardcoded subtitles, select a region that covers all text</li>
-              <li>• If the result isn't perfect, try adjusting the selection area and retry</li>
-              <li>• Processing another video will use 10 credits</li>
+              <li>• {t('result.tip1')}</li>
+              <li>• {t('result.tip2')}</li>
+              <li>• {t('result.tip3')}</li>
+              <li>• {t('result.tip4')}</li>
             </ul>
           </Card>
         </div>

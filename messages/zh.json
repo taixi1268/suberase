@@ -114,5 +114,41 @@
     "download": "下载",
     "share": "分享",
     "back": "返回"
+  },
+  "edit": {
+    "instructions": "使用说明",
+    "step1": "暂停视频到字幕可见的位置",
+    "step2": "在字幕区域画一个矩形框",
+    "step3": "准备好后点击「开始处理」",
+    "selectedRegions": "已选区域",
+    "noRegions": "未选择区域。在视频上画矩形框来标记字幕区域。",
+    "region": "区域",
+    "startProcessing": "开始处理",
+    "processing": "处理中...",
+    "creditCost": "将消耗",
+    "credits": "积分"
+  },
+  "result": {
+    "processed": "处理后",
+    "original": "原始",
+    "originalVideo": "原始视频",
+    "completeTitle": "处理完成！",
+    "completeSubtitle": "您的视频已成功处理",
+    "originalDescription": "带字幕的原始视频",
+    "processedDescription": "处理后的视频 - 字幕已去除",
+    "downloading": "下载中...",
+    "downloadVideo": "下载视频",
+    "processAgain": "重新处理",
+    "processAnother": "处理另一个视频",
+    "shareResult": "分享结果",
+    "summary": "处理摘要",
+    "regionsProcessed": "已处理区域",
+    "creditsUsed": "消耗积分",
+    "successRate": "成功率",
+    "tipsTitle": "最佳效果提示",
+    "tip1": "尽可能精确地选择字幕区域",
+    "tip2": "对于硬编码字幕，选择覆盖所有文字的区域",
+    "tip3": "如果效果不理想，尝试调整选择区域并重试",
+    "tip4": "处理另一个视频将消耗 10 积分"
   }
 }
