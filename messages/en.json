@@ -1,0 +1,118 @@
+{
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "faq": "FAQ",
+    "login": "Login",
+    "logout": "Logout",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Remove Video Subtitles",
+    "titleHighlight": "in One Click",
+    "subtitle": "AI-powered • Stunning Results • Simple to Use",
+    "cta": "Get Started",
+    "demo": "Watch Demo"
+  },
+  "features": {
+    "title": "Why Choose SubErase",
+    "fast": {
+      "title": "Lightning Fast",
+      "description": "Process your videos in seconds with our optimized AI pipeline"
+    },
+    "precise": {
+      "title": "Pixel Perfect",
+      "description": "AI-powered inpainting fills in the background seamlessly"
+    },
+    "secure": {
+      "title": "Safe & Secure",
+      "description": "Your videos are processed securely and deleted after download"
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "step1": {
+      "title": "Upload",
+      "description": "Upload your video file (MP4, MOV, AVI up to 100MB)"
+    },
+    "step2": {
+      "title": "Select",
+      "description": "Draw a box around the subtitle area you want to remove"
+    },
+    "step3": {
+      "title": "Process",
+      "description": "Our AI removes subtitles and fills in the background"
+    },
+    "step4": {
+      "title": "Download",
+      "description": "Download your clean video without any watermarks"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "What video formats are supported?",
+      "answer": "We support MP4, MOV, and AVI formats. Maximum file size is 100MB and video duration up to 3 minutes."
+    },
+    "q2": {
+      "question": "How long does processing take?",
+      "answer": "Processing time depends on video length. Typically, a 1-minute video takes 2-5 minutes to process."
+    },
+    "q3": {
+      "question": "Is there a watermark on the output?",
+      "answer": "No! Your processed videos are completely watermark-free."
+    },
+    "q4": {
+      "question": "What are credits and how do they work?",
+      "answer": "Credits are used to process videos. New users get 100 free credits. Each video processing costs 10 credits. You can earn 10 bonus credits daily by logging in."
+    },
+    "q5": {
+      "question": "What if the result is not satisfactory?",
+      "answer": "You can retry processing without additional credit cost if you're not satisfied with the result."
+    }
+  },
+  "footer": {
+    "description": "AI-powered video subtitle removal tool",
+    "copyright": "© 2024 SubErase. All rights reserved."
+  },
+  "upload": {
+    "title": "Upload Your Video",
+    "dragDrop": "Drag and drop your video here",
+    "or": "or",
+    "browse": "Browse Files",
+    "supported": "Supported formats: MP4, MOV, AVI",
+    "maxSize": "Maximum size: 100MB, Duration: 3 minutes",
+    "uploading": "Uploading...",
+    "processing": "Processing..."
+  },
+  "credits": {
+    "balance": "Credits",
+    "dailyBonus": "Daily Bonus",
+    "claimed": "Claimed!",
+    "claim": "Claim +10",
+    "notEnough": "Not enough credits",
+    "buyMore": "Buy Credits",
+    "comingSoon": "Coming Soon"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "loginWith": "Login with",
+    "google": "Google",
+    "github": "GitHub",
+    "welcome": "Welcome back!",
+    "newUser": "Welcome! You've received 100 free credits.",
+    "registerBonus": "New users get 100 free credits!"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "download": "Download",
+    "share": "Share",
+    "back": "Back"
+  }
+}

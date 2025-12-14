@@ -1,0 +1,118 @@
+{
+  "nav": {
+    "features": "功能特点",
+    "howItWorks": "使用方法",
+    "faq": "常见问题",
+    "login": "登录",
+    "logout": "退出",
+    "dashboard": "控制台"
+  },
+  "hero": {
+    "title": "一键去除视频字幕",
+    "titleHighlight": "AI驱动",
+    "subtitle": "AI驱动 · 效果惊艳 · 简单易用",
+    "cta": "开始使用",
+    "demo": "观看演示"
+  },
+  "features": {
+    "title": "为什么选择 SubErase",
+    "fast": {
+      "title": "极速处理",
+      "description": "优化的AI管道，秒级处理您的视频"
+    },
+    "precise": {
+      "title": "像素级精准",
+      "description": "AI智能修复，无缝填充背景"
+    },
+    "secure": {
+      "title": "安全可靠",
+      "description": "安全处理，下载后自动删除"
+    }
+  },
+  "howItWorks": {
+    "title": "使用方法",
+    "step1": {
+      "title": "上传视频",
+      "description": "上传视频文件 (MP4, MOV, AVI，最大100MB)"
+    },
+    "step2": {
+      "title": "框选区域",
+      "description": "在视频上框选需要去除的字幕区域"
+    },
+    "step3": {
+      "title": "AI处理",
+      "description": "AI去除字幕并智能填充背景"
+    },
+    "step4": {
+      "title": "下载成品",
+      "description": "下载无水印的干净视频"
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "q1": {
+      "question": "支持哪些视频格式？",
+      "answer": "支持 MP4、MOV、AVI 格式。文件最大100MB，时长不超过3分钟。"
+    },
+    "q2": {
+      "question": "处理需要多长时间？",
+      "answer": "处理时间取决于视频长度。通常1分钟视频需要2-5分钟处理。"
+    },
+    "q3": {
+      "question": "输出视频有水印吗？",
+      "answer": "没有！处理后的视频完全无水印。"
+    },
+    "q4": {
+      "question": "积分是什么？如何使用？",
+      "answer": "积分用于处理视频。新用户获得100免费积分，每次处理消耗10积分。每日登录可领取10积分。"
+    },
+    "q5": {
+      "question": "如果效果不满意怎么办？",
+      "answer": "如果效果不满意，可以免费重新处理，不会额外扣除积分。"
+    }
+  },
+  "footer": {
+    "description": "AI驱动的视频字幕去除工具",
+    "copyright": "© 2024 SubErase. 保留所有权利。"
+  },
+  "upload": {
+    "title": "上传您的视频",
+    "dragDrop": "拖拽视频到此处",
+    "or": "或者",
+    "browse": "选择文件",
+    "supported": "支持格式：MP4, MOV, AVI",
+    "maxSize": "最大文件：100MB，时长：3分钟",
+    "uploading": "上传中...",
+    "processing": "处理中..."
+  },
+  "credits": {
+    "balance": "积分",
+    "dailyBonus": "每日奖励",
+    "claimed": "已领取！",
+    "claim": "领取 +10",
+    "notEnough": "积分不足",
+    "buyMore": "购买积分",
+    "comingSoon": "即将推出"
+  },
+  "auth": {
+    "login": "登录",
+    "logout": "退出登录",
+    "dashboard": "用户中心",
+    "loginWith": "使用以下方式登录",
+    "google": "Google",
+    "github": "GitHub",
+    "welcome": "欢迎回来！",
+    "newUser": "欢迎！您已获得100免费积分。",
+    "registerBonus": "新用户注册即送100积分！"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出错了",
+    "retry": "重试",
+    "cancel": "取消",
+    "confirm": "确认",
+    "download": "下载",
+    "share": "分享",
+    "back": "返回"
+  }
+}
