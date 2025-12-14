@@ -37,8 +37,11 @@ export async function createVideoInpaintingTask(
       mask: input.mask_url,
     })
 
+    // Use replicate.run() which handles version selection automatically
+    // Then we need to create a prediction to get the ID for status tracking
     const prediction = await replicate.predictions.create({
-      model: VIDEO_INPAINTING_MODEL,
+      // Use the specific version hash from jd7h/propainter
+      version: "b3e1ec853a25dbbd5178128139eb773612924c7f032c9919c20c254e6813a5ad",
       input: {
         video: input.video_url,
         mask: input.mask_url,
