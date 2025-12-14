@@ -1,4 +1,5 @@
 import Replicate from 'replicate'
+import sharp from 'sharp'
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -93,8 +94,33 @@ export async function cancelVideoInpaintingTask(
   }
 }
 
-// Generate a PNG mask image as base64 data URL
+// Generate a PNG mask image as Buffer
 // The mask should be black background with white rectangles where subtitles are
+// ProPainter expects: white = area to inpaint, black = keep original
+export async function generateMaskPng(
+  videoWidth: number,
+  videoHeight: number,
+  regions: Region[]
+): Promise<Buffer> {
+  // Create SVG first, then convert to PNG using sharp
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="${videoWidth}" height="${videoHeight}">
+      <rect width="100%" height="100%" fill="black"/>
+      ${regions.map(r => `
+        <rect x="${Math.round(r.x)}" y="${Math.round(r.y)}" width="${Math.round(r.width)}" height="${Math.round(r.height)}" fill="white"/>
+      `).join('')}
+    </svg>
+  `.trim()
+
+  // Convert SVG to PNG using sharp
+  const pngBuffer = await sharp(Buffer.from(svg))
+    .png()
+    .toBuffer()
+
+  return pngBuffer
+}
+
+// Legacy function for compatibility - returns data URL (deprecated)
 export function generateMaskDataUrl(
   videoWidth: number,
   videoHeight: number,

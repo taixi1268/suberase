@@ -1,6 +1,6 @@
 import { createClient, createAdminClient } from '@/lib/supabase/server'
 import { deductCredits, hasEnoughCredits, CREDIT_COSTS } from '@/lib/credits'
-import { createVideoInpaintingTask, generateMaskDataUrl, Region } from '@/lib/replicate'
+import { createVideoInpaintingTask, generateMaskPng, Region } from '@/lib/replicate'
 import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
@@ -82,21 +82,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid request: missing video dimensions' }, { status: 400 })
     }
 
-    // Generate mask image
-    const maskDataUrl = generateMaskDataUrl(videoWidth, videoHeight, regions)
+    // Generate PNG mask image
+    const maskBuffer = await generateMaskPng(videoWidth, videoHeight, regions)
 
-    // Upload mask to Supabase Storage
+    // Upload mask to Supabase Storage as PNG
     const timestamp = Date.now()
-    const maskFilename = `${user.id}/masks/${timestamp}.svg`
-
-    // Convert data URL to buffer for upload
-    const maskBase64 = maskDataUrl.split(',')[1]
-    const maskBuffer = Buffer.from(maskBase64, 'base64')
+    const maskFilename = `${user.id}/masks/${timestamp}.png`
 
     const { error: maskUploadError } = await adminSupabase.storage
       .from('videos')
       .upload(maskFilename, maskBuffer, {
-        contentType: 'image/svg+xml',
+        contentType: 'image/png',
         upsert: true,
       })
 
