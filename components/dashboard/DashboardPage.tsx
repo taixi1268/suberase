@@ -1,38 +1,115 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { Coins, History, Gift, ChevronRight } from 'lucide-react'
+import { Coins, History, Gift, ChevronRight, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { Card, Button } from '@/components/ui'
+import { useAuth } from '@/components/auth/AuthProvider'
+
+interface UserData {
+  credits: number
+  canClaimDaily: boolean
+}
 
 export default function DashboardPage() {
   const t = useTranslations()
+  const { user, loading: authLoading } = useAuth()
 
-  // Demo data
-  const user = {
-    name: 'Demo User',
-    email: 'demo@example.com',
-    credits: 90,
-    canClaimDaily: true,
+  const [userData, setUserData] = useState<UserData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [claiming, setClaiming] = useState(false)
+
+  // Fetch user credits and daily bonus status
+  useEffect(() => {
+    async function fetchUserData() {
+      if (!user) {
+        setLoading(false)
+        return
+      }
+
+      try {
+        // Fetch credits
+        const creditsRes = await fetch('/api/credits')
+        const creditsData = await creditsRes.json()
+
+        // Fetch daily bonus status
+        const dailyRes = await fetch('/api/credits/daily')
+        const dailyData = await dailyRes.json()
+
+        setUserData({
+          credits: creditsData.credits ?? 0,
+          canClaimDaily: dailyData.canClaim ?? false,
+        })
+      } catch (error) {
+        console.error('Failed to fetch user data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    if (!authLoading) {
+      fetchUserData()
+    }
+  }, [user, authLoading])
+
+  const handleClaimDaily = async () => {
+    if (claiming) return
+
+    setClaiming(true)
+    try {
+      const res = await fetch('/api/credits/daily', { method: 'POST' })
+      const data = await res.json()
+
+      if (res.ok) {
+        setUserData(prev => prev ? {
+          ...prev,
+          credits: data.credits,
+          canClaimDaily: false,
+        } : null)
+      }
+    } catch (error) {
+      console.error('Failed to claim daily bonus:', error)
+    } finally {
+      setClaiming(false)
+    }
   }
 
-  const recentTasks = [
-    { id: '1', name: 'video1.mp4', status: 'completed', date: '2024-01-15' },
-    { id: '2', name: 'video2.mp4', status: 'completed', date: '2024-01-14' },
-    { id: '3', name: 'video3.mp4', status: 'failed', date: '2024-01-13' },
-  ]
+  // Show loading state
+  if (authLoading || loading) {
+    return (
+      <div className="min-h-screen pt-24 pb-16 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary-blue" />
+      </div>
+    )
+  }
 
-  const handleClaimDaily = () => {
-    alert('Daily bonus claimed! +10 credits (Demo)')
+  // Show login prompt if not authenticated
+  if (!user) {
+    return (
+      <div className="min-h-screen pt-24 pb-16">
+        <div className="container-custom text-center">
+          <h1 className="text-2xl font-bold text-text-primary mb-4">
+            {t('auth.login')}
+          </h1>
+          <p className="text-text-secondary">
+            Please login to view your dashboard.
+          </p>
+        </div>
+      </div>
+    )
   }
 
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="container-custom">
         <div className="animate-fade-in">
-          <h1 className="text-3xl font-bold text-text-primary mb-8">
+          <h1 className="text-3xl font-bold text-text-primary mb-2">
             {t('nav.dashboard')}
           </h1>
+          <p className="text-text-secondary mb-8">
+            {user.email}
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -49,7 +126,7 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-2">
                       <Coins className="w-8 h-8 text-warning" />
                       <span className="text-4xl font-bold text-text-primary">
-                        {user.credits}
+                        {userData?.credits ?? 0}
                       </span>
                     </div>
                   </div>
@@ -59,9 +136,13 @@ export default function DashboardPage() {
                     <p className="text-text-secondary text-sm mb-2">
                       {t('credits.dailyBonus')}
                     </p>
-                    {user.canClaimDaily ? (
-                      <Button onClick={handleClaimDaily} size="sm">
-                        <Gift className="w-4 h-4 mr-2" />
+                    {userData?.canClaimDaily ? (
+                      <Button onClick={handleClaimDaily} size="sm" disabled={claiming}>
+                        {claiming ? (
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        ) : (
+                          <Gift className="w-4 h-4 mr-2" />
+                        )}
                         {t('credits.claim')}
                       </Button>
                     ) : (
@@ -79,7 +160,7 @@ export default function DashboardPage() {
               </Card>
             </div>
 
-            {/* Recent Tasks */}
+            {/* Recent Tasks - placeholder */}
             <div className="animate-fade-in">
               <Card variant="glass" className="p-6">
                 <div className="flex items-center justify-between mb-4">
@@ -89,39 +170,9 @@ export default function DashboardPage() {
                   </h2>
                 </div>
 
-                {recentTasks.length === 0 ? (
-                  <p className="text-text-muted text-center py-8">
-                    No processing history yet
-                  </p>
-                ) : (
-                  <ul className="space-y-3">
-                    {recentTasks.map((task) => (
-                      <li
-                        key={task.id}
-                        className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-                      >
-                        <div>
-                          <p className="text-sm font-medium text-text-primary">
-                            {task.name}
-                          </p>
-                          <p className="text-xs text-text-muted">{task.date}</p>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <span
-                            className={`text-xs px-2 py-1 rounded-full ${
-                              task.status === 'completed'
-                                ? 'bg-success/20 text-success'
-                                : 'bg-error/20 text-error'
-                            }`}
-                          >
-                            {task.status}
-                          </span>
-                          <ChevronRight className="w-4 h-4 text-text-muted" />
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <p className="text-text-muted text-center py-8">
+                  No processing history yet
+                </p>
               </Card>
             </div>
           </div>
@@ -138,29 +189,6 @@ export default function DashboardPage() {
                   <Link href="/upload">
                     <Button className="w-full">Process New Video</Button>
                   </Link>
-                </div>
-              </Card>
-            </div>
-
-            {/* Stats */}
-            <div className="animate-fade-in">
-              <Card variant="glass" className="p-6">
-                <h2 className="text-lg font-semibold text-text-primary mb-4">
-                  Your Stats
-                </h2>
-                <div className="space-y-4">
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Videos Processed</span>
-                    <span className="font-medium">3</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Credits Used</span>
-                    <span className="font-medium">30</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Member Since</span>
-                    <span className="font-medium">Jan 2024</span>
-                  </div>
                 </div>
               </Card>
             </div>
