@@ -1,20 +1,18 @@
-'use client'
+import { setRequestLocale } from 'next-intl/server'
+import { locales } from '@/i18n'
+import HomePage from '@/components/home/HomePage'
 
-import dynamic from 'next/dynamic'
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
+}
 
-// 动态导入组件以避免 SSR 问题
-const Hero = dynamic(() => import('@/components/home/Hero').then(mod => ({ default: mod.Hero })), { ssr: false })
-const Features = dynamic(() => import('@/components/home/Features').then(mod => ({ default: mod.Features })), { ssr: false })
-const HowItWorks = dynamic(() => import('@/components/home/HowItWorks').then(mod => ({ default: mod.HowItWorks })), { ssr: false })
-const FAQ = dynamic(() => import('@/components/home/FAQ').then(mod => ({ default: mod.FAQ })), { ssr: false })
+interface PageProps {
+  params: Promise<{ locale: string }>
+}
 
-export default function HomePage() {
-  return (
-    <>
-      <Hero />
-      <Features />
-      <HowItWorks />
-      <FAQ />
-    </>
-  )
+export default async function Page({ params }: PageProps) {
+  const { locale } = await params
+  setRequestLocale(locale)
+
+  return <HomePage />
 }
