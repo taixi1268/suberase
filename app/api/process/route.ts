@@ -133,13 +133,13 @@ export async function POST(request: Request) {
     console.log('Task created:', task.id)
 
     try {
-      // Create Replicate prediction
+      // Create Replicate prediction using ProPainter model
       const predictionId = await createVideoInpaintingTask({
         video_url: videoUrl,
         mask_url: maskUrl,
       })
 
-      console.log('Prediction created:', predictionId)
+      console.log('Replicate prediction created:', predictionId)
 
       // Update task with prediction ID
       await adminSupabase

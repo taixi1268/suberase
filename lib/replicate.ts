@@ -24,8 +24,9 @@ export interface VideoInpaintingOutput {
 }
 
 // ProPainter model for video inpainting
-// Using the official ProPainter model
-const VIDEO_INPAINTING_MODEL = 'sczhou/propainter'
+// https://replicate.com/jd7h/propainter
+// Supports static image mask - perfect for subtitle removal
+const VIDEO_INPAINTING_MODEL = 'jd7h/propainter'
 
 export async function createVideoInpaintingTask(
   input: VideoInpaintingInput
@@ -41,13 +42,12 @@ export async function createVideoInpaintingTask(
       input: {
         video: input.video_url,
         mask: input.mask_url,
-        // ProPainter parameters
-        fp16: true,
-        mask_dilation: 8, // Slightly expand mask for better coverage
-        flow_mask_dilates: 8,
-        neighbor_length: 10,
-        ref_stride: 10,
-        subvideo_length: 80,
+        // ProPainter parameters for better quality
+        fp16: true,                    // Use half precision for faster processing
+        resize_ratio: 1.0,             // Keep original resolution
+        mask_dilation: 4,              // Slightly expand mask for better coverage
+        neighbor_length: 10,           // Number of local neighbors
+        ref_stride: 10,                // Reference stride for global references
       },
     })
 
@@ -90,18 +90,15 @@ export async function cancelVideoInpaintingTask(
   }
 }
 
-// Generate a simple PNG mask image as base64 data URL
+// Generate a PNG mask image as base64 data URL
 // The mask should be black background with white rectangles where subtitles are
 export function generateMaskDataUrl(
   videoWidth: number,
   videoHeight: number,
   regions: Region[]
 ): string {
-  // Create a simple BMP-like structure for the mask
-  // For simplicity, we'll create a PNG using a minimal approach
-
-  // Since we're in Node.js environment and can't use Canvas directly,
-  // we'll create a simple SVG and convert it to data URL
+  // Create SVG mask - black background with white rectangles for subtitle areas
+  // ProPainter expects: white = area to inpaint, black = keep original
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="${videoWidth}" height="${videoHeight}">
       <rect width="100%" height="100%" fill="black"/>
