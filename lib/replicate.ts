@@ -48,7 +48,7 @@ export async function createVideoInpaintingTask(
         mask: input.mask_url,
         // ProPainter parameters for better quality
         fp16: true,                    // Use half precision for faster processing
-        resize_ratio: 1.0,             // Keep original resolution
+        resize_ratio: 0.5,             // Scale down to 50% to avoid CUDA OOM
         mask_dilation: 4,              // Slightly expand mask for better coverage
         neighbor_length: 10,           // Number of local neighbors
         ref_stride: 10,                // Reference stride for global references
